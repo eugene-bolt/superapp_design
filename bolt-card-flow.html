@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolt Card Flow</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    }
+
+    /* Phone shell */
+    .phone {
+      width: 390px;
+      min-height: 844px;
+      background: #09090f;
+      border-radius: 50px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 0 0 1.5px rgba(255,255,255,0.12);
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px 0;
+      height: 50px;
+    }
+    .status-bar .time { color: #fff; font-size: 16px; font-weight: 600; }
+    .status-bar .icons { display: flex; gap: 6px; align-items: center; }
+    .status-bar .icons svg { fill: #fff; }
+
+    /* Screens */
+    .screen {
+      display: none;
+      flex-direction: column;
+      min-height: 794px;
+      animation: fadeIn 0.22s ease;
+    }
+    .screen.active { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ─── HOME SCREEN ─── */
+    #home {
+      background: #09090f;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 40px;
+    }
+    #home .app-logo {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #home h1 { color: #fff; font-size: 26px; font-weight: 700; text-align: center; }
+    #home p { color: #6b7280; font-size: 14px; text-align: center; line-height: 1.5; }
+
+    .tab-bar {
+      display: flex;
+      justify-content: space-around;
+      padding: 16px 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: auto;
+      background: #0d0d18;
+    }
+    .tab-item {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      color: #6b7280; font-size: 10px; cursor: pointer;
+      transition: color 0.2s;
+    }
+    .tab-item.active, .tab-item:hover { color: #3b82f6; }
+    .tab-item svg { width: 22px; height: 22px; }
+
+    /* ─── SCREEN 01: BOLT CARD ─── */
+    #screen01 {
+      background: #09090f;
+      padding: 0;
+    }
+    .s01-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 16px 20px 12px;
+    }
+    .s01-header h2 { color: #fff; font-size: 17px; font-weight: 600; }
+    .close-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      left: 20px;
+      transition: background 0.2s;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.2); }
+
+    .account-row {
+      margin: 10px 16px;
+      background: #141425;
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .bolt-icon-sm {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .account-info .label { color: #9ca3af; font-size: 13px; }
+    .account-info .amount { color: #fff; font-size: 20px; font-weight: 700; }
+
+    .card-promo {
+      margin: 10px 16px;
+      background: #141425;
+      border-radius: 20px;
+      padding: 28px 24px 32px;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .card-img-wrap {
+      position: relative;
+      width: 220px; height: 130px;
+    }
+    .bolt-card-visual {
+      width: 200px; height: 120px;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4c1d95 70%, #6d28d9 100%);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(109,40,217,0.4);
+      display: flex; align-items: flex-end; padding: 12px 14px;
+    }
+    .bolt-card-visual::before {
+      content: 'BOLT';
+      position: absolute;
+      top: 12px; left: 14px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .bolt-card-visual::after {
+      content: 'DEBIT';
+      position: absolute;
+      top: 12px; left: 58px;
+      color: rgba(255,255,255,0.5);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .card-lightning {
+      position: absolute;
+      right: 14px; bottom: 10px;
+      width: 52px; height: 60px;
+      opacity: 0.85;
+    }
+    .card-nfc {
+      color: rgba(255,255,255,0.5);
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+    .download-badge {
+      position: absolute;
+      top: -8px; right: -8px;
+      width: 40px; height: 40px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .card-promo h3 {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .card-promo p {
+      color: #9ca3af;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      width: calc(100% - 32px);
+      margin: 16px 16px 0;
+      padding: 18px;
+      background: #fff;
+      color: #09090f;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .footer-legal {
+      margin-top: auto;
+      padding: 20px 24px 32px;
+      color: #4b5563;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .footer-legal a { color: #3b82f6; text-decoration: none; }
+
+    /* ─── SCREEN 02: DEPOSIT AMOUNT ─── */
+    #screen02 {
+      background: #09090f;
+    }
+    .s02-back {
+      padding: 16px 20px 8px;
+    }
+    .back-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #1e2235;
+      border: none; color: #fff;
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: #2a3050; }
+
+    .amount-display {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px;
+    }
+    .amount-value {
+      color: #fff;
+      font-size: 52px;
+      font-weight: 300;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .amount-cursor {
+      width: 3px; height: 52px;
+      background: #fff;
+      border-radius: 2px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .no-fee { color: #6b7280; font-size: 14px; }
+
+    .keypad-area {
+      padding: 0 0 32px;
+    }
+    .keypad-select-btn {
+      width: calc(100% - 32px);
+      margin: 0 16px 16px;
+      padding: 18px;
+      background: #fff;
+      color: #09090f;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .keypad-select-btn:hover { opacity: 0.9; }
+    .keypad-select-btn:active { transform: scale(0.98); }
+
+    .keypad {
+      background: #1c1c2a;
+      border-radius: 20px 20px 0 0;
+      padding: 12px 8px 8px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .key {
+      padding: 16px 8px;
+      border: none;
+      background: #2a2a3d;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 400;
+      cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 1px;
+      transition: background 0.15s;
+    }
+    .key:hover { background: #363650; }
+    .key:active { background: #424260; }
+    .key .key-sub { font-size: 8px; color: #9ca3af; letter-spacing: 1.5px; font-weight: 500; }
+    .key.key-del { background: transparent; }
+    .key.key-del:hover { background: rgba(255,255,255,0.05); }
+    .key.key-zero { grid-column: 2; }
+
+    /* ─── SCREEN 03: WALLET ─── */
+    #screen03 {
+      background: #09090f;
+      padding-top: 8px;
+    }
+    .s03-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+    }
+    .s03-top h2 { color: #fff; font-size: 28px; font-weight: 800; padding: 8px 0; }
+    .icon-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #1e2235;
+      border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 14px;
+      transition: background 0.2s;
+    }
+    .icon-btn:hover { background: #2a3050; }
+    .s03-actions { display: flex; gap: 8px; }
+
+    .wallet-options {
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 4px;
+      flex: 1;
+    }
+    .wallet-option {
+      background: #141425;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex; align-items: center; gap: 14px;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+      text-align: left;
+    }
+    .wallet-option:hover { background: #1a1a35; }
+    .wallet-option-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .wallet-option-icon.bolt { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+    .wallet-option-icon.bank { background: #1e2235; }
+    .wallet-option-info { flex: 1; }
+    .wallet-option-title { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .wallet-option-sub { color: #6b7280; font-size: 12px; }
+    .recommended-badge {
+      background: #3b82f6;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+    .apply-btn, .connect-btn {
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      color: #fff;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .apply-btn:hover, .connect-btn:hover { background: rgba(255,255,255,0.1); }
+
+    .or-divider {
+      text-align: center;
+      color: #4b5563;
+      font-size: 13px;
+      padding: 8px 0;
+    }
+
+    .s03-footer {
+      padding: 16px;
+    }
+
+    /* ─── SCREEN 04: DISCLOSURES ─── */
+    #screen04 {
+      background: #09090f;
+    }
+    .s04-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px 8px;
+    }
+    .s04-header span { color: #9ca3af; font-size: 14px; }
+
+    .disclosures-content {
+      padding: 16px 20px;
+      flex: 1;
+    }
+    .disclosures-content h2 {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 28px;
+      line-height: 1.2;
+    }
+
+    .disclosure-timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .disclosure-timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 1px;
+    }
+    .disclosure-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .disclosure-item::before {
+      content: '';
+      position: absolute;
+      left: -24px; top: 4px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #2a2a3d;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .disclosure-item-header {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+      margin-bottom: 6px;
+    }
+    .disclosure-item-title {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .required-badge {
+      background: #4c1d95;
+      color: #a78bfa;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .disclosure-item-desc {
+      color: #6b7280;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* ─── SCREEN 05: PLAID ─── */
+    #screen05 {
+      background: #fff;
+    }
+    .s05-close {
+      padding: 16px 20px 0;
+      display: flex; justify-content: flex-end;
+    }
+    .close-btn-dark {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: none; color: #1f2937;
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .plaid-body {
+      flex: 1;
+      padding: 24px 24px 0;
+      display: flex; flex-direction: column;
+    }
+    .plaid-logos {
+      display: flex; justify-content: center; gap: -8px;
+      margin-bottom: 24px;
+    }
+    .plaid-logo-bolt, .plaid-logo-bank {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 -4px;
+    }
+    .plaid-logo-bolt { background: linear-gradient(135deg, #3b82f6, #06b6d4); z-index: 2; }
+    .plaid-logo-bank { background: linear-gradient(135deg, #818cf8, #6366f1); z-index: 1; }
+
+    .plaid-body h2 {
+      color: #111827;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+    .phone-input-row {
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .flag-emoji { font-size: 18px; }
+    .phone-code { color: #374151; font-size: 15px; font-weight: 500; }
+    .phone-number { color: #374151; font-size: 15px; letter-spacing: 1px; }
+
+    .plaid-hint {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .plaid-hint-icon {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .plaid-hint p {
+      color: #6b7280;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .plaid-hint a { color: #374151; text-decoration: underline; }
+
+    .plaid-footer {
+      padding: 0 24px 32px;
+      margin-top: auto;
+    }
+    .plaid-legal {
+      color: #9ca3af;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .plaid-legal a { color: #374151; text-decoration: underline; }
+    .btn-plaid {
+      width: 100%;
+      padding: 18px;
+      background: #111827;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .btn-plaid-skip {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: #374151;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Shared continue btn for disclosures */
+    .s04-footer {
+      padding: 16px 20px 32px;
+    }
+    .btn-continue {
+      width: 100%;
+      padding: 18px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.4);
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    /* ─── UTILITY ─── */
+    .lightning-svg { width: 22px; height: 22px; fill: #fff; }
+    .bank-svg { width: 22px; height: 22px; fill: rgba(255,255,255,0.7); }
+  </style>
+</head>
+<body>
+<div class="phone">
+  <!-- STATUS BAR -->
+  <div class="status-bar" id="statusBar">
+    <span class="time" id="statusTime">9:41</span>
+    <div class="icons">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="0" width="3" height="12" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1" opacity="0.3"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.4C10.2 2.4 12.2 3.3 13.6 4.8L15 3.4C13.2 1.5 10.7 0.4 8 0.4C5.3 0.4 2.8 1.5 1 3.4L2.4 4.8C3.8 3.3 5.8 2.4 8 2.4Z"/><path d="M8 5.2C9.5 5.2 10.8 5.8 11.8 6.8L13.2 5.4C11.8 4 9.9 3.2 8 3.2C6.1 3.2 4.2 4 2.8 5.4L4.2 6.8C5.2 5.8 6.5 5.2 8 5.2Z"/><circle cx="8" cy="10" r="1.8"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="22" height="10" rx="3" stroke="#fff" stroke-width="1.2" fill="none"/><rect x="1.5" y="2.5" width="18" height="7" rx="2" fill="#fff"/><rect x="23" y="4" width="2" height="4" rx="1" fill="rgba(255,255,255,0.4)"/></svg>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- HOME SCREEN                                         -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="screen active" id="home">
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; padding:40px;">
+      <div class="app-logo">
+        <svg class="lightning-svg" viewBox="0 0 24 24"><path d="M13 2L4.09 12.25H11L10 22l8.91-10.25H13L13 2z"/></svg>
+      </div>
+      <h1 style="color:#fff;font-size:28px;font-weight:800;">Bolt SuperApp</h1>
+      <p style="color:#6b7280;font-size:14px;text-align:center;line-height:1.6;">Tap <strong style="color:#9ca3af;">Cards / Bank</strong> below to get started with your Bolt Card.</p>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Home
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        Profile
+      </div>
+      <div class="tab-item active" onclick="showScreen('screen01')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+        Cards / Bank
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        Finance
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCREEN 01: BOLT CARD                                -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="screen" id="screen01">
+    <div class="s01-header">
+      <!-- X button on top LEFT -->
+      <button class="close-btn" onclick="showScreen('home')" aria-label="Close">✕</button>
+      <h2>Bolt Card</h2>
+    </div>
+
+    <!-- Account balance row -->
+    <div class="account-row">
+      <div class="bolt-icon-sm">
+        <svg class="lightning-svg" viewBox="0 0 24 24"><path d="M13 2L4.09 12.25H11L10 22l8.91-10.25H13L13 2z"/></svg>
+      </div>
+      <div class="account-info">
+        <div class="label">Bolt Checking Account</div>
+        <div class="amount">$0.00</div>
+      </div>
+    </div>
+
+    <!-- Card promo -->
+    <div class="card-promo">
+      <div class="card-img-wrap">
+        <div class="bolt-card-visual">
+          <span class="card-nfc">)))</span>
+          <!-- Lightning bolt SVG on card -->
+          <svg class="card-lightning" viewBox="0 0 60 72" fill="none">
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#818cf8"/>
+                <stop offset="100%" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+            <path d="M38 4L12 40H28L22 68L50 32H34L38 4Z" fill="url(#lg1)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="download-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        </div>
+      </div>
+
+      <h3>Fund your account to activate your Bolt Card</h3>
+      <p>Add $5 or more to enable your virtual card.</p>
+    </div>
+
+    <button class="btn-primary" onclick="showScreen('screen02')">Deposit funds</button>
+
+    <div class="footer-legal">
+      This card is issued by Midland States Bank, Member FDIC,<br/>
+      pursuant to a license from Mastercard International Inc. For<br/>
+      customer support please contact <a href="#">+1 970 GET BOLT</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCREEN 02: DEPOSIT AMOUNT                           -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="screen" id="screen02">
+    <div class="s02-back">
+      <button class="back-btn" onclick="showScreen('screen01')">‹</button>
+    </div>
+
+    <div class="amount-display">
+      <div class="amount-value">
+        <div class="amount-cursor"></div>
+        <span id="depositDisplay">$0</span>
+      </div>
+      <div class="no-fee">No fee</div>
+    </div>
+
+    <div class="keypad-area">
+      <button class="keypad-select-btn" onclick="showScreen('screen03')">Select payment method</button>
+      <div class="keypad">
+        <button class="key" onclick="appendDigit('1')">1</button>
+        <button class="key" onclick="appendDigit('2')">2<span class="key-sub">ABC</span></button>
+        <button class="key" onclick="appendDigit('3')">3<span class="key-sub">DEF</span></button>
+        <button class="key" onclick="appendDigit('4')">4<span class="key-sub">GHI</span></button>
+        <button class="key" onclick="appendDigit('5')">5<span class="key-sub">JKL</span></button>
+        <button class="key" onclick="appendDigit('6')">6<span class="key-sub">MNO</span></button>
+        <button class="key" onclick="appendDigit('7')">7<span class="key-sub">PQRS</span></button>
+        <button class="key" onclick="appendDigit('8')">8<span class="key-sub">TUV</span></button>
+        <button class="key" onclick="appendDigit('9')">9<span class="key-sub">WXYZ</span></button>
+        <button class="key key-zero" onclick="appendDigit('0')">0</button>
+        <button class="key key-del" onclick="deleteDigit()">
+          <svg width="22" height="16" viewBox="0 0 24 18" fill="#fff"><path d="M22 0H8L0 9l8 9h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm-3 12.59L17.59 14 14 10.41 10.41 14 9 12.59 12.59 9 9 5.41 10.41 4 14 7.59 17.59 4 19 5.41 15.41 9 19 12.59z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCREEN 03: WALLET                                   -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="screen" id="screen03">
+    <div class="s03-top">
+      <button class="back-btn" onclick="showScreen('screen02')">‹</button>
+      <div class="s03-actions">
+        <button class="icon-btn">⚙</button>
+        <button class="icon-btn">···</button>
+      </div>
+    </div>
+
+    <div style="padding: 4px 20px 16px;">
+      <h2 style="color:#fff;font-size:32px;font-weight:800;">Wallet</h2>
+    </div>
+
+    <div class="wallet-options">
+      <!-- Bolt Checking Account option -->
+      <button class="wallet-option" onclick="showScreen('screen04')">
+        <div class="wallet-option-icon bolt">
+          <svg class="lightning-svg" viewBox="0 0 24 24"><path d="M13 2L4.09 12.25H11L10 22l8.91-10.25H13L13 2z"/></svg>
+        </div>
+        <div class="wallet-option-info">
+          <div class="recommended-badge">Recommended</div>
+          <div class="wallet-option-title">Bolt Checking Account</div>
+          <div class="wallet-option-sub">No fees · Instant transfers</div>
+        </div>
+        <button class="apply-btn" onclick="event.stopPropagation(); showScreen('screen04')">Apply</button>
+      </button>
+
+      <div class="or-divider">or</div>
+
+      <!-- Connect your bank option -->
+      <button class="wallet-option" onclick="showScreen('screen05')">
+        <div class="wallet-option-icon bank">
+          <svg class="bank-svg" viewBox="0 0 24 24"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zM11.5 1L2 6v2h19V6l-9.5-5z"/></svg>
+        </div>
+        <div class="wallet-option-info">
+          <div class="wallet-option-title">Connect your bank</div>
+          <div class="wallet-option-sub">Via Plaid · Secure & encrypted</div>
+        </div>
+        <button class="connect-btn" onclick="event.stopPropagation(); showScreen('screen05')">Connect</button>
+      </button>
+    </div>
+
+    <div class="s03-footer">
+      <button class="btn-primary" style="width:100%;margin:0;" onclick="showScreen('screen04')">Select</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCREEN 04: DISCLOSURES                              -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="screen" id="screen04">
+    <div class="s04-header">
+      <button class="back-btn" onclick="showScreen('screen03')">‹</button>
+      <span>Disclosures</span>
+    </div>
+
+    <div class="disclosures-content">
+      <h2>Review and accept disclosures</h2>
+      <div class="disclosure-timeline">
+        <div class="disclosure-item">
+          <div class="disclosure-item-header">
+            <div class="disclosure-item-title">Electronic Communication Consent Agreement</div>
+            <span class="required-badge">Required</span>
+          </div>
+          <div class="disclosure-item-desc">Consent to use electronic signatures, communications, and statements.</div>
+        </div>
+        <div class="disclosure-item">
+          <div class="disclosure-item-header">
+            <div class="disclosure-item-title">Consumer checking account agreement</div>
+            <span class="required-badge">Required</span>
+          </div>
+          <div class="disclosure-item-desc">Outlines terms and conditions of using banking products and services provided by sponsor bank.</div>
+        </div>
+        <div class="disclosure-item">
+          <div class="disclosure-item-header">
+            <div class="disclosure-item-title">Privacy Notice</div>
+            <span class="required-badge">Required</span>
+          </div>
+          <div class="disclosure-item-desc">Learn how bank collects, uses, and shares your personal data.</div>
+        </div>
+        <div class="disclosure-item">
+          <div class="disclosure-item-header">
+            <div class="disclosure-item-title">Bolt Account Reward Program Terms</div>
+            <span class="required-badge">Required</span>
+          </div>
+          <div class="disclosure-item-desc">Learn more about reward.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s04-footer">
+      <button class="btn-continue">Continue</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCREEN 05: PLAID                                    -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="screen" id="screen05" style="background:#fff;">
+    <div class="s05-close">
+      <button class="close-btn-dark" onclick="showScreen('screen03')">✕</button>
+    </div>
+
+    <div class="plaid-body">
+      <!-- Logos -->
+      <div class="plaid-logos" style="display:flex;justify-content:center;gap:8px;margin-bottom:28px;">
+        <div class="plaid-logo-bolt" style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#3b82f6,#06b6d4);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M13 2L4.09 12.25H11L10 22l8.91-10.25H13L13 2z"/></svg>
+        </div>
+        <div class="plaid-logo-bank" style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#818cf8,#6366f1);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zM11.5 1L2 6v2h19V6l-9.5-5z"/></svg>
+        </div>
+      </div>
+
+      <h2>Bolt SuperApp uses Plaid to connect your account</h2>
+
+      <!-- Phone input -->
+      <div class="phone-input-row">
+        <span class="flag-emoji">🇺🇸</span>
+        <span class="phone-code">+1</span>
+        <span style="color:#d1d5db;margin:0 4px;">|</span>
+        <span class="phone-number">(•••) ••• 5555</span>
+      </div>
+
+      <!-- Hint -->
+      <div class="plaid-hint">
+        <div class="plaid-hint-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M13 2L4.09 12.25H11L10 22l8.91-10.25H13L13 2z"/></svg>
+        </div>
+        <p>Use your phone number to log in or sign up with Plaid to go faster next time. <a href="#">Learn more</a></p>
+      </div>
+    </div>
+
+    <div class="plaid-footer">
+      <p class="plaid-legal"><a href="#">Terms</a> apply. By continuing, you agree to Plaid's <a href="#">Privacy Policy</a> and to receive updates on plaid.com</p>
+      <button class="btn-plaid">Continue</button>
+      <button class="btn-plaid-skip">Continue without phone number</button>
+    </div>
+  </div>
+</div><!-- /phone -->
+
+<script>
+  // Screen navigation
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    // Adjust status bar color based on screen
+    const statusBar = document.getElementById('statusBar');
+    const isLight = id === 'screen05';
+    statusBar.style.background = isLight ? '#fff' : 'transparent';
+    statusBar.querySelectorAll('*').forEach(el => {
+      el.style.color = isLight ? '#111827' : '';
+    });
+    statusBar.querySelectorAll('svg').forEach(el => {
+      el.style.fill = isLight ? '#111827' : '#fff';
+    });
+
+    // Update time display
+    const now = new Date();
+    const h = now.getHours() % 12 || 12;
+    const m = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('statusTime').textContent = h + ':' + m;
+  }
+
+  // Keypad logic
+  let depositAmount = '';
+  function appendDigit(d) {
+    if (depositAmount.length >= 6) return;
+    depositAmount += d;
+    updateDeposit();
+  }
+  function deleteDigit() {
+    depositAmount = depositAmount.slice(0, -1);
+    updateDeposit();
+  }
+  function updateDeposit() {
+    const val = parseInt(depositAmount || '0', 10);
+    document.getElementById('depositDisplay').textContent = '$' + val.toLocaleString();
+  }
+</script>
+</body>
+</html>
