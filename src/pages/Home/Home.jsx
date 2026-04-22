@@ -1,65 +1,160 @@
 import { useState } from 'react'
 import './Home.css'
 
-// Figma asset URLs (valid for 7 days)
-const imgNetworkSignal = 'https://www.figma.com/api/mcp/asset/fc8cec57-dbbb-45f5-9914-9073017a2bf7'
-const imgWifi          = 'https://www.figma.com/api/mcp/asset/731b5dc3-1880-4f94-aa64-0f723be2325c'
-const imgBattery       = 'https://www.figma.com/api/mcp/asset/9c6a04d6-36d5-4e0d-aa0f-34ce4e425dd5'
-const imgBoltLogo      = 'https://www.figma.com/api/mcp/asset/06aa66a6-eb3b-4c82-851a-50671deeba1f'
-const imgNotifIcon     = 'https://www.figma.com/api/mcp/asset/cf00b7f8-e5fe-4bbe-be6c-1be5e986daac'
-const imgLockIcon      = 'https://www.figma.com/api/mcp/asset/911b9d78-3a85-402f-8770-dda4b92d44af'
+// ── Inline SVG icons ──────────────────────────────────────────────
 
-const icons = {
-  card:       'https://www.figma.com/api/mcp/asset/1fe49aff-bd20-4659-9157-155f5f801891',
-  transfer:   'https://www.figma.com/api/mcp/asset/42c0fa06-8b4a-47d0-b207-3a7feefafa03',
-  crypto:     'https://www.figma.com/api/mcp/asset/7b8e7711-f390-4239-ac88-aa2d47490844',
-  finance:    'https://www.figma.com/api/mcp/asset/8cc1447d-a41c-4c81-bef7-d9e3ac8afb43',
-  invest:     'https://www.figma.com/api/mcp/asset/d3817bd6-579e-4794-8375-9067bee19741',
-  shopAi:     'https://www.figma.com/api/mcp/asset/d1294bcb-b386-485c-aa77-6fea415076a7',
-  track:      'https://www.figma.com/api/mcp/asset/173e6ca7-4bab-4d75-8714-7bf82ddbe581',
-  rewards:    'https://www.figma.com/api/mcp/asset/ee0493f1-2dfd-4559-9f95-b8e5a6d0c99c',
-  gaming:     'https://www.figma.com/api/mcp/asset/4b85e40a-f257-4e29-b740-32f7f9e77a5d',
-  credit:     'https://www.figma.com/api/mcp/asset/b0bfa030-1314-45cf-97b6-762a09733967',
-}
+const BoltLogo = () => (
+  <svg viewBox="0 0 120 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bolt">
+    <path d="M0 27.2h8.96V34H0zM0 13.6h8.96v6.8H0zM0 0h8.96v6.8H0zM11.2 0h8.96v34H11.2zM22.4 27.2h8.96V34H22.4zM33.6 0h8.96v34H33.6zM44.8 0h17.92v6.8H44.8zM44.8 13.6h8.96v6.8H44.8zM44.8 27.2h17.92V34H44.8zM67.2 0H76v34h-8.8zM78.4 0h26.88v6.8H78.4zM78.4 27.2h26.88V34H78.4zM78.4 13.6h8.96v6.8H78.4zM96.32 13.6H105.28v6.8H96.32zM107.52 0h12.48v34h-12.48z" fill="#fff"/>
+  </svg>
+)
+
+const BellIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)
+
+const LockIcon = () => (
+  <svg viewBox="0 0 12 16" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="7" width="10" height="8" rx="1.5" fill="currentColor"/>
+    <path d="M3 7V5a3 3 0 1 1 6 0v2" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
+  </svg>
+)
+
+// Status bar icons
+const SignalIcon = () => (
+  <svg className="status-icon" width="20" height="12" viewBox="0 0 20 12">
+    <rect x="0"  y="8"  width="3" height="4" rx="0.5"/>
+    <rect x="4"  y="5"  width="3" height="7" rx="0.5"/>
+    <rect x="8"  y="3"  width="3" height="9" rx="0.5"/>
+    <rect x="12" y="0"  width="3" height="12" rx="0.5"/>
+    <rect x="16" y="0"  width="4" height="12" rx="0.5" opacity="0.3"/>
+  </svg>
+)
+
+const WifiIcon = () => (
+  <svg className="status-icon" width="17" height="12" viewBox="0 0 17 12">
+    <path d="M8.5 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>
+    <path d="M4.5 6.8A5.6 5.6 0 0 1 8.5 5a5.6 5.6 0 0 1 4 1.8" stroke="#fff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+    <path d="M1.5 3.8A9.5 9.5 0 0 1 8.5 1a9.5 9.5 0 0 1 7 2.8" stroke="#fff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+  </svg>
+)
+
+const BatteryIcon = () => (
+  <svg className="status-icon" width="25" height="12" viewBox="0 0 25 12">
+    <rect x="0" y="1" width="21" height="10" rx="2" stroke="#fff" strokeWidth="1.2" fill="none"/>
+    <rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="#fff"/>
+    <path d="M22.5 4.5v3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+)
+
+// Feature grid icons
+const CardIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="5" width="20" height="14" rx="3"/>
+    <path d="M2 10h20"/>
+    <path d="M6 15h4"/>
+  </svg>
+)
+const TransferIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 12h14M15 6l6 6-6 6"/>
+    <path d="M19 12H5M9 18l-6-6 6-6"/>
+  </svg>
+)
+const CryptoIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+    <path d="M2 17l10 5 10-5"/>
+    <path d="M2 12l10 5 10-5"/>
+  </svg>
+)
+const FinanceIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 6v6l4 2"/>
+  </svg>
+)
+const InvestIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+    <polyline points="16 7 22 7 22 13"/>
+  </svg>
+)
+const ShopAIIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    <path d="M12 9l2 2 4-4"/>
+  </svg>
+)
+const TrackIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polygon points="10 8 16 12 10 16 10 8"/>
+  </svg>
+)
+const RewardsIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </svg>
+)
+const GamingIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="6" width="20" height="12" rx="4"/>
+    <path d="M6 12h4M8 10v4M15 12h2M17 10v4"/>
+  </svg>
+)
+const CreditIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+  </svg>
+)
+
+// ── Data ──────────────────────────────────────────────────────────
 
 const TABS = ['Cash', 'Crypto', 'Rewards', 'Invest']
 
 const GRID_ITEMS = [
-  { icon: icons.card,     label: 'Cards/Bank',   locked: true  },
-  { icon: icons.transfer, label: 'Send/Receive',  locked: true  },
-  { icon: icons.crypto,   label: 'Crypto',        locked: true  },
-  { icon: icons.finance,  label: 'Finance',       locked: true  },
-  { icon: icons.invest,   label: 'Invest',        locked: true  },
-  { icon: icons.shopAi,   label: 'Shop AI',       locked: false },
-  { icon: icons.track,    label: 'Track Orders',  locked: false },
-  { icon: icons.rewards,  label: 'Rewards',       locked: true  },
-  { icon: icons.gaming,   label: 'Play & Earn',   locked: true  },
-  { icon: icons.credit,   label: 'Credit Score',  locked: false },
+  { Icon: CardIcon,     label: 'Cards/Bank',   locked: true  },
+  { Icon: TransferIcon, label: 'Send/Receive',  locked: true  },
+  { Icon: CryptoIcon,   label: 'Crypto',        locked: true  },
+  { Icon: FinanceIcon,  label: 'Finance',       locked: true  },
+  { Icon: InvestIcon,   label: 'Invest',        locked: true  },
+  { Icon: ShopAIIcon,   label: 'Shop AI',       locked: false },
+  { Icon: TrackIcon,    label: 'Track Orders',  locked: false },
+  { Icon: RewardsIcon,  label: 'Rewards',       locked: true  },
+  { Icon: GamingIcon,   label: 'Play & Earn',   locked: true  },
+  { Icon: CreditIcon,   label: 'Credit Score',  locked: false },
 ]
+
+// ── Sub-components ────────────────────────────────────────────────
 
 function StatusBar() {
   return (
     <div className="status-bar">
       <span className="status-bar-time">9:41</span>
       <div className="status-bar-icons">
-        <img src={imgNetworkSignal} alt="Signal" />
-        <img src={imgWifi} alt="WiFi" />
-        <img src={imgBattery} alt="Battery" />
+        <SignalIcon />
+        <WifiIcon />
+        <BatteryIcon />
       </div>
     </div>
   )
 }
 
-function GridItem({ icon, label, locked }) {
+function GridItem({ Icon, label, locked }) {
   return (
-    <div className="home-grid-item">
+    <div className="home-grid-item" role="button" tabIndex={0} aria-label={label}>
       <div className="home-grid-icon-wrap">
         <div className="home-grid-icon-btn">
-          <img src={icon} alt={label} />
+          <Icon />
         </div>
         {locked && (
           <div className="home-lock-badge" aria-label="Coming soon">
-            <img src={imgLockIcon} alt="" />
+            <LockIcon />
           </div>
         )}
       </div>
@@ -68,6 +163,8 @@ function GridItem({ icon, label, locked }) {
   )
 }
 
+// ── Page ──────────────────────────────────────────────────────────
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('Cash')
 
@@ -75,21 +172,19 @@ export default function Home() {
     <div className="home">
       <StatusBar />
 
-      {/* App Bar */}
       <header className="home-appbar">
         <div className="home-appbar-logo">
-          <img src={imgBoltLogo} alt="Bolt" />
+          <BoltLogo />
         </div>
         <div className="home-appbar-actions">
-          <div className="home-avatar" aria-label="WW">WW</div>
-          <button className="home-notif-btn" aria-label="Notifications, 3 unread">
-            <img src={imgNotifIcon} alt="" />
+          <div className="home-avatar" aria-label="Account: WW">WW</div>
+          <button className="home-notif-btn" aria-label="Notifications — 3 unread">
+            <BellIcon />
             <span className="home-notif-badge" aria-hidden="true">3</span>
           </button>
         </div>
       </header>
 
-      {/* Tab Toggle */}
       <nav className="home-tabs" aria-label="Account type">
         {TABS.map(tab => (
           <button
@@ -103,12 +198,10 @@ export default function Home() {
         ))}
       </nav>
 
-      {/* Balance */}
       <div className="home-balance-section">
-        <div className="home-balance">$0.00</div>
+        <div className="home-balance" aria-label="Balance: $0.00">$0.00</div>
       </div>
 
-      {/* Icon Grid — bottom aligned */}
       <div className="home-content">
         <div className="home-grid">
           {GRID_ITEMS.map(item => (
