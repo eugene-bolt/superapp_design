@@ -43,6 +43,7 @@
 
   /* ── Typography ── */
   --tnd-font-family:                'Inter', sans-serif;
+  --tnd-font-family-brand:          'PP Agrandir', 'Barlow Condensed', sans-serif;
   --tnd-font-size-xs:               12px;
   --tnd-font-size-sm:               14px;
   --tnd-font-size-md:               16px;

@@ -3,47 +3,20 @@ import './Home.css'
 
 // ── Figma asset URLs (Thunder DS icons — valid 7 days from fetch) ──
 const ASSETS = {
-  logo:       'https://www.figma.com/api/mcp/asset/06aa66a6-eb3b-4c82-851a-50671deeba1f',
-  notif:      'https://www.figma.com/api/mcp/asset/cf00b7f8-e5fe-4bbe-be6c-1be5e986daac',
-  lock:       'https://www.figma.com/api/mcp/asset/911b9d78-3a85-402f-8770-dda4b92d44af',
-  card:       'https://www.figma.com/api/mcp/asset/1fe49aff-bd20-4659-9157-155f5f801891',
-  transfer:   'https://www.figma.com/api/mcp/asset/42c0fa06-8b4a-47d0-b207-3a7feefafa03',
-  crypto:     'https://www.figma.com/api/mcp/asset/7b8e7711-f390-4239-ac88-aa2d47490844',
-  finance:    'https://www.figma.com/api/mcp/asset/8cc1447d-a41c-4c81-bef7-d9e3ac8afb43',
-  invest:     'https://www.figma.com/api/mcp/asset/d3817bd6-579e-4794-8375-9067bee19741',
-  shopAi:     'https://www.figma.com/api/mcp/asset/d1294bcb-b386-485c-aa77-6fea415076a7',
-  track:      'https://www.figma.com/api/mcp/asset/173e6ca7-4bab-4d75-8714-7bf82ddbe581',
-  rewards:    'https://www.figma.com/api/mcp/asset/ee0493f1-2dfd-4559-9f95-b8e5a6d0c99c',
-  gaming:     'https://www.figma.com/api/mcp/asset/4b85e40a-f257-4e29-b740-32f7f9e77a5d',
-  credit:     'https://www.figma.com/api/mcp/asset/b0bfa030-1314-45cf-97b6-762a09733967',
+  logo:       'https://www.figma.com/api/mcp/asset/a21964aa-f3ae-4a8e-9543-06c6e7ea4817',
+  notif:      'https://www.figma.com/api/mcp/asset/c37be9c8-a1d0-43c6-9887-f04974eeb248',
+  lock:       'https://www.figma.com/api/mcp/asset/f06d1280-223a-459d-bc83-6373e02da183',
+  card:       'https://www.figma.com/api/mcp/asset/ddd6e6a4-8348-4a5f-b5b4-2907f0757de7',
+  transfer:   'https://www.figma.com/api/mcp/asset/0978564b-d33c-4788-b9ca-6697048dda23',
+  crypto:     'https://www.figma.com/api/mcp/asset/fb6e2de6-e67b-4b73-8227-723b5261c38d',
+  finance:    'https://www.figma.com/api/mcp/asset/aad64318-4822-4049-bf66-9f5205271c56',
+  invest:     'https://www.figma.com/api/mcp/asset/766f2416-8ddd-405f-b266-2fc1767b77f6',
+  shopAi:     'https://www.figma.com/api/mcp/asset/9a1fe82c-a62f-478d-97bf-bb0178cc3095',
+  track:      'https://www.figma.com/api/mcp/asset/f9906983-ce07-4e16-9574-2076a699602b',
+  rewards:    'https://www.figma.com/api/mcp/asset/d7d1af02-8d84-4fe7-9b31-f5c48baf1667',
+  gaming:     'https://www.figma.com/api/mcp/asset/6adcb793-e59d-4f52-9e22-35d206cdf542',
+  credit:     'https://www.figma.com/api/mcp/asset/931bf710-a29d-477b-8bf6-8402d620ee66',
 }
-
-// ── Status bar icons (inline SVG — no external dependency) ────────
-const SignalIcon = () => (
-  <svg className="status-icon" width="20" height="12" viewBox="0 0 20 12" fill="white">
-    <rect x="0"  y="8"  width="3" height="4" rx="0.5"/>
-    <rect x="4.5"  y="5" width="3" height="7" rx="0.5"/>
-    <rect x="9"  y="2"  width="3" height="10" rx="0.5"/>
-    <rect x="13.5" y="0" width="3" height="12" rx="0.5"/>
-    <rect x="17" y="0" width="3" height="12" rx="0.5" opacity="0.3"/>
-  </svg>
-)
-
-const WifiIcon = () => (
-  <svg className="status-icon" width="17" height="12" viewBox="0 0 17 12" fill="none">
-    <circle cx="8.5" cy="11" r="1.5" fill="white"/>
-    <path d="M5 7.5A5 5 0 0 1 8.5 6a5 5 0 0 1 3.5 1.5" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
-    <path d="M2 4A9 9 0 0 1 8.5 1.5 9 9 0 0 1 15 4" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
-  </svg>
-)
-
-const BatteryIcon = () => (
-  <svg className="status-icon" width="25" height="12" viewBox="0 0 25 12" fill="none">
-    <rect x="0.6" y="1.6" width="20.5" height="8.8" rx="2.2" stroke="white" strokeWidth="1.2"/>
-    <rect x="2" y="3" width="15" height="6" rx="1" fill="white"/>
-    <path d="M22.5 4.5v3" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>
-)
 
 // ── Data ──────────────────────────────────────────────────────────
 const TABS = ['Cash', 'Crypto', 'Rewards', 'Invest']
@@ -62,19 +35,6 @@ const GRID_ITEMS = [
 ]
 
 // ── Sub-components ────────────────────────────────────────────────
-function StatusBar() {
-  return (
-    <div className="status-bar">
-      <span className="status-bar-time">9:41</span>
-      <div className="status-bar-icons">
-        <SignalIcon />
-        <WifiIcon />
-        <BatteryIcon />
-      </div>
-    </div>
-  )
-}
-
 function GridItem({ icon, label, locked }) {
   return (
     <div className="home-grid-item" role="button" tabIndex={0} aria-label={label}>
@@ -99,8 +59,6 @@ export default function Home() {
 
   return (
     <div className="home">
-      <StatusBar />
-
       <header className="home-appbar">
         <div className="home-appbar-logo">
           <img src={ASSETS.logo} alt="Bolt" />
