@@ -1,6 +1,6 @@
-/* ── Page shell — phone frame on desktop ── */
+/* ── Page shell ── */
 body {
-  background: #000;
+  background: var(--tnd-color-bg-page);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -12,7 +12,8 @@ body {
   flex-direction: column;
   min-height: 100svh;
   width: 100%;
-  max-width: 390px;
+  min-width: 320px;
+  max-width: 768px;
   background: var(--tnd-color-bg-page);
   position: relative;
   overflow: hidden;
@@ -170,18 +171,21 @@ body {
   flex-shrink: 0;
 }
 .home-grid-icon-btn {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 9999px;
   background: var(--tnd-color-bg-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.home-grid-icon-btn svg {
-  width: 26px;
-  height: 26px;
   flex-shrink: 0;
+}
+.home-grid-icon-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 .home-lock-badge {
   position: absolute;
@@ -196,10 +200,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-.home-lock-badge svg {
-  width: 9px;
-  height: 9px;
-  fill: var(--tnd-color-bg-page);
+.home-lock-badge img {
+  width: 8px;
+  height: 8px;
+  display: block;
+  object-fit: contain;
 }
 .home-grid-label {
   font-family: var(--tnd-font-family);

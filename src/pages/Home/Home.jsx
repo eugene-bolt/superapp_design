@@ -3,19 +3,19 @@ import './Home.css'
 
 // ── Figma asset URLs (Thunder DS icons — valid 7 days from fetch) ──
 const ASSETS = {
-  logo:       'https://www.figma.com/api/mcp/asset/a21964aa-f3ae-4a8e-9543-06c6e7ea4817',
-  notif:      'https://www.figma.com/api/mcp/asset/c37be9c8-a1d0-43c6-9887-f04974eeb248',
-  lock:       'https://www.figma.com/api/mcp/asset/f06d1280-223a-459d-bc83-6373e02da183',
-  card:       'https://www.figma.com/api/mcp/asset/ddd6e6a4-8348-4a5f-b5b4-2907f0757de7',
-  transfer:   'https://www.figma.com/api/mcp/asset/0978564b-d33c-4788-b9ca-6697048dda23',
-  crypto:     'https://www.figma.com/api/mcp/asset/fb6e2de6-e67b-4b73-8227-723b5261c38d',
-  finance:    'https://www.figma.com/api/mcp/asset/aad64318-4822-4049-bf66-9f5205271c56',
-  invest:     'https://www.figma.com/api/mcp/asset/766f2416-8ddd-405f-b266-2fc1767b77f6',
-  shopAi:     'https://www.figma.com/api/mcp/asset/9a1fe82c-a62f-478d-97bf-bb0178cc3095',
-  track:      'https://www.figma.com/api/mcp/asset/f9906983-ce07-4e16-9574-2076a699602b',
-  rewards:    'https://www.figma.com/api/mcp/asset/d7d1af02-8d84-4fe7-9b31-f5c48baf1667',
-  gaming:     'https://www.figma.com/api/mcp/asset/6adcb793-e59d-4f52-9e22-35d206cdf542',
-  credit:     'https://www.figma.com/api/mcp/asset/931bf710-a29d-477b-8bf6-8402d620ee66',
+  logo:       'https://www.figma.com/api/mcp/asset/8501dae4-e0b6-4700-81cd-098c64724b60',
+  notif:      'https://www.figma.com/api/mcp/asset/8b0f1e2a-f6f8-4d06-8346-07150822f4d9',
+  lock:       'https://www.figma.com/api/mcp/asset/b92bc282-2751-4778-b1a0-93efbb3a06cb',
+  card:       'https://www.figma.com/api/mcp/asset/d080f33c-11bf-4679-b46b-f29cca4aeb49',
+  transfer:   'https://www.figma.com/api/mcp/asset/a3987647-84fe-4304-8390-c3871f8dd233',
+  crypto:     'https://www.figma.com/api/mcp/asset/8aa4da6a-21db-4e35-98ad-d7b1cea33195',
+  finance:    'https://www.figma.com/api/mcp/asset/bed344f6-c7a0-4a80-8fc4-b28441c15b6e',
+  invest:     'https://www.figma.com/api/mcp/asset/fd556da4-cbca-4af1-b2fc-b2542a093a23',
+  shopAi:     'https://www.figma.com/api/mcp/asset/6606db07-173a-4bf4-a89a-d1084f5f5310',
+  track:      'https://www.figma.com/api/mcp/asset/68b0b7d6-b8c3-4f6c-8227-c193f9c2170f',
+  rewards:    'https://www.figma.com/api/mcp/asset/ba5b5a43-70e1-4285-b843-2ba2bccfd7b9',
+  gaming:     'https://www.figma.com/api/mcp/asset/fae89818-73f5-4bca-af11-d8076c832389',
+  credit:     'https://www.figma.com/api/mcp/asset/8f928a79-a849-4913-a615-45b2cf15fddc',
 }
 
 // ── Data ──────────────────────────────────────────────────────────
