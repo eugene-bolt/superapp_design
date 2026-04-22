@@ -1,0 +1,167 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tnd-space-2);
+  border: none;
+  border-radius: var(--tnd-radius-full);
+  font-family: var(--tnd-font-family);
+  font-weight: var(--tnd-font-weight-semibold);
+  font-size: var(--tnd-font-size-md);
+  line-height: var(--tnd-line-height-normal);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--tnd-transition-fast),
+    color var(--tnd-transition-fast),
+    box-shadow var(--tnd-transition-fast),
+    opacity var(--tnd-transition-fast);
+  position: relative;
+  outline: none;
+  min-width: 80px;
+}
+
+/* ── Sizes ── */
+.btn-xs {
+  height: 32px;
+  padding: 0 var(--tnd-space-3);
+  font-size: var(--tnd-font-size-sm);
+  gap: var(--tnd-space-1);
+}
+.btn-sm {
+  height: 40px;
+  padding: 0 var(--tnd-space-4);
+}
+.btn-md {
+  height: 48px;
+  padding: 0 var(--tnd-space-6);
+}
+
+/* ── Neutral ── */
+.btn-neutral-filled {
+  background: var(--tnd-color-neutral-bold);
+  color: var(--tnd-color-text-on-bold);
+}
+.btn-neutral-filled:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.88);
+}
+.btn-neutral-filled:active:not(:disabled) {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.btn-neutral-muted {
+  background: var(--tnd-color-neutral-muted);
+  color: var(--tnd-color-text-primary);
+}
+.btn-neutral-muted:hover:not(:disabled) {
+  background: var(--tnd-color-neutral-muted-hover);
+}
+.btn-neutral-muted:active:not(:disabled) {
+  background: var(--tnd-color-neutral-muted-press);
+}
+
+.btn-neutral-ghost {
+  background: transparent;
+  color: var(--tnd-color-text-primary);
+}
+.btn-neutral-ghost:hover:not(:disabled) {
+  background: var(--tnd-color-neutral-muted);
+}
+.btn-neutral-ghost:active:not(:disabled) {
+  background: var(--tnd-color-neutral-muted-press);
+}
+
+/* ── Brand ── */
+.btn-brand-filled {
+  background: var(--tnd-color-brand);
+  color: var(--tnd-color-text-on-bold);
+}
+.btn-brand-filled:hover:not(:disabled) {
+  background: var(--tnd-color-brand-hover);
+}
+.btn-brand-filled:active:not(:disabled) {
+  background: var(--tnd-color-brand-press);
+}
+
+.btn-brand-muted {
+  background: var(--tnd-color-brand-muted);
+  color: var(--tnd-color-text-brand);
+}
+.btn-brand-muted:hover:not(:disabled) {
+  background: var(--tnd-color-brand-muted-hover);
+}
+
+.btn-brand-ghost {
+  background: transparent;
+  color: var(--tnd-color-text-brand);
+}
+.btn-brand-ghost:hover:not(:disabled) {
+  background: var(--tnd-color-brand-muted);
+}
+
+/* ── Destructive ── */
+.btn-destructive-filled {
+  background: var(--tnd-color-destructive);
+  color: #ffffff;
+}
+.btn-destructive-filled:hover:not(:disabled) {
+  background: var(--tnd-color-destructive-hover);
+}
+.btn-destructive-filled:active:not(:disabled) {
+  background: var(--tnd-color-destructive-press);
+}
+
+.btn-destructive-muted {
+  background: var(--tnd-color-destructive-muted);
+  color: var(--tnd-color-text-destructive);
+}
+.btn-destructive-muted:hover:not(:disabled) {
+  background: var(--tnd-color-destructive-muted-hover);
+}
+
+.btn-destructive-ghost {
+  background: transparent;
+  color: var(--tnd-color-text-destructive);
+}
+.btn-destructive-ghost:hover:not(:disabled) {
+  background: var(--tnd-color-destructive-muted);
+}
+
+/* ── Focus ring ── */
+.btn:focus-visible {
+  box-shadow:
+    0 0 0 var(--tnd-focus-ring-offset) var(--tnd-color-bg-page),
+    0 0 0 calc(var(--tnd-focus-ring-offset) + var(--tnd-focus-ring-width)) var(--tnd-focus-ring-color);
+}
+
+/* ── Disabled ── */
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Loading spinner ── */
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: tnd-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes tnd-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Icon slot ── */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}

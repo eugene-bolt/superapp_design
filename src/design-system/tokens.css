@@ -1,0 +1,82 @@
+:root {
+  /* ── Colors ── */
+  --tnd-color-bg-page:              #04091a;
+  --tnd-color-bg-surface:           #0d1529;
+  --tnd-color-bg-elevated:          #111e36;
+
+  /* Neutral */
+  --tnd-color-neutral-bold:         #ffffff;
+  --tnd-color-neutral-muted:        rgba(255, 255, 255, 0.12);
+  --tnd-color-neutral-muted-hover:  rgba(255, 255, 255, 0.18);
+  --tnd-color-neutral-muted-press:  rgba(255, 255, 255, 0.08);
+
+  /* Brand (orange) */
+  --tnd-color-brand:                #ff8000;
+  --tnd-color-brand-hover:          #e67300;
+  --tnd-color-brand-press:          #cc6600;
+  --tnd-color-brand-muted:          rgba(255, 128, 0, 0.14);
+  --tnd-color-brand-muted-hover:    rgba(255, 128, 0, 0.22);
+
+  /* Destructive */
+  --tnd-color-destructive:          #e53e3e;
+  --tnd-color-destructive-hover:    #c53030;
+  --tnd-color-destructive-press:    #9b2c2c;
+  --tnd-color-destructive-muted:    rgba(229, 62, 62, 0.14);
+  --tnd-color-destructive-muted-hover: rgba(229, 62, 62, 0.22);
+
+  /* Text */
+  --tnd-color-text-on-bold:         #04091a;
+  --tnd-color-text-primary:         #ffffff;
+  --tnd-color-text-secondary:       rgba(255, 255, 255, 0.6);
+  --tnd-color-text-disabled:        rgba(255, 255, 255, 0.3);
+  --tnd-color-text-brand:           #ff8000;
+  --tnd-color-text-destructive:     #e53e3e;
+
+  /* Border */
+  --tnd-color-border-focus:         #ff8000;
+  --tnd-color-border-subtle:        rgba(255, 255, 255, 0.1);
+
+  /* ── Typography ── */
+  --tnd-font-family:                'Inter', sans-serif;
+  --tnd-font-size-xs:               12px;
+  --tnd-font-size-sm:               14px;
+  --tnd-font-size-md:               16px;
+  --tnd-font-size-lg:               18px;
+  --tnd-font-weight-regular:        400;
+  --tnd-font-weight-medium:         500;
+  --tnd-font-weight-semibold:       600;
+  --tnd-font-weight-bold:           700;
+  --tnd-line-height-tight:          1.25;
+  --tnd-line-height-normal:         1.5;
+
+  /* ── Spacing ── */
+  --tnd-space-1:   4px;
+  --tnd-space-2:   8px;
+  --tnd-space-3:   12px;
+  --tnd-space-4:   16px;
+  --tnd-space-5:   20px;
+  --tnd-space-6:   24px;
+  --tnd-space-8:   32px;
+  --tnd-space-10:  40px;
+  --tnd-space-12:  48px;
+
+  /* ── Shape / Radius ── */
+  --tnd-radius-sm:   6px;
+  --tnd-radius-md:   10px;
+  --tnd-radius-lg:   16px;
+  --tnd-radius-full: 9999px;
+
+  /* ── Focus ── */
+  --tnd-focus-ring-width:  3px;
+  --tnd-focus-ring-offset: 2px;
+  --tnd-focus-ring-color:  #ff8000;
+
+  /* ── Shadows ── */
+  --tnd-shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.4);
+  --tnd-shadow-md:  0 4px 12px rgba(0, 0, 0, 0.5);
+  --tnd-shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.6);
+
+  /* ── Transitions ── */
+  --tnd-transition-fast:   120ms ease;
+  --tnd-transition-normal: 200ms ease;
+}
