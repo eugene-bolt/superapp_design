@@ -13,7 +13,6 @@ body {
 
 .ds-page {
   min-height: 100vh;
-  padding: var(--tnd-space-8);
   max-width: 900px;
   margin: 0 auto;
 }
@@ -41,6 +40,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--tnd-space-8);
+  padding: var(--tnd-space-8);
+}
+
+.ds-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tnd-space-3);
+  max-width: 360px;
 }
 
 .ds-section {

@@ -1,0 +1,90 @@
+.radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tnd-space-2);
+  cursor: pointer;
+  user-select: none;
+}
+.radio-wrapper.radio-disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* hide native input */
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* custom circle */
+.radio-control {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    border-color var(--tnd-transition-fast),
+    background var(--tnd-transition-fast);
+}
+.radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tnd-color-text-on-bold);
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity var(--tnd-transition-fast),
+    transform var(--tnd-transition-fast);
+}
+
+/* checked */
+.radio-input:checked + .radio-control {
+  border-color: var(--tnd-color-brand);
+  background: var(--tnd-color-brand);
+}
+.radio-input:checked + .radio-control .radio-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* hover */
+.radio-wrapper:not(.radio-disabled):hover .radio-control {
+  border-color: rgba(255,255,255,0.5);
+}
+.radio-wrapper:not(.radio-disabled):hover .radio-input:checked + .radio-control {
+  border-color: var(--tnd-color-brand-hover);
+  background: var(--tnd-color-brand-hover);
+}
+
+/* focus */
+.radio-input:focus-visible + .radio-control {
+  box-shadow:
+    0 0 0 2px var(--tnd-color-bg-page),
+    0 0 0 5px var(--tnd-focus-ring-color);
+}
+
+/* label */
+.radio-label {
+  font-family: var(--tnd-font-family);
+  font-size: var(--tnd-font-size-sm);
+  font-weight: var(--tnd-font-weight-medium);
+  color: var(--tnd-color-text-primary);
+  line-height: var(--tnd-line-height-normal);
+}
+
+/* group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tnd-space-3);
+}
+.radio-group-horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--tnd-space-4);
+}
