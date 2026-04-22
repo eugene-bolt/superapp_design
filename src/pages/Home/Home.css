@@ -1,0 +1,227 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  max-width: 390px;
+  margin: 0 auto;
+  background: var(--tnd-color-bg-page);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Status Bar ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  height: 47px;
+  flex-shrink: 0;
+}
+.status-bar-time {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--tnd-font-family);
+  flex: 1;
+}
+.status-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: flex-end;
+}
+.status-bar-icons img {
+  height: 12px;
+  width: auto;
+}
+
+/* ── App Bar ── */
+.home-appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+.home-appbar-logo img {
+  height: 16px;
+  width: auto;
+}
+.home-appbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Avatar */
+.home-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: var(--tnd-color-bg-avatar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--tnd-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  color: #bec1cf;
+  flex-shrink: 0;
+}
+
+/* Notification button */
+.home-notif-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: var(--tnd-color-bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--tnd-transition-fast);
+}
+.home-notif-btn:hover { background: rgba(37, 44, 86, 0.8); }
+.home-notif-btn img { width: 20px; height: 20px; }
+.home-notif-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--tnd-color-accent-blue);
+  border: 2px solid var(--tnd-color-bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--tnd-color-bg-page);
+  font-family: var(--tnd-font-family);
+  line-height: 1;
+}
+
+/* ── Tab Toggle ── */
+.home-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 16px;
+  flex-shrink: 0;
+}
+.home-tab {
+  height: 32px;
+  padding: 4px 16px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--tnd-font-family);
+  font-size: 12px;
+  font-weight: 500;
+  transition: background var(--tnd-transition-fast), color var(--tnd-transition-fast);
+  white-space: nowrap;
+}
+.home-tab-active {
+  background: #ffffff;
+  color: #04091a;
+}
+.home-tab-inactive {
+  background: var(--tnd-color-bg-subtle);
+  color: #ffffff;
+}
+
+/* ── Balance ── */
+.home-balance-section {
+  padding: 16px;
+  flex-shrink: 0;
+}
+.home-balance {
+  font-family: 'PP Agrandir', 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+/* ── Main content area ── */
+.home-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 16px 34px;
+}
+
+/* ── Icon Grid ── */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.home-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity var(--tnd-transition-fast);
+}
+.home-grid-item:hover { opacity: 0.8; }
+
+/* Icon button with badge */
+.home-grid-icon-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.home-grid-icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: var(--tnd-color-bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.home-grid-icon-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.home-lock-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--tnd-color-accent-blue);
+  border: 2px solid var(--tnd-color-bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-lock-badge img {
+  width: 8px;
+  height: 8px;
+  object-fit: contain;
+}
+.home-grid-label {
+  font-family: var(--tnd-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.45;
+  width: 100%;
+}

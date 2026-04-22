@@ -4,6 +4,11 @@
   --tnd-color-bg-surface:           #0d1529;
   --tnd-color-bg-elevated:          #111e36;
 
+  /* Backgrounds */
+  --tnd-color-bg-subtle:            #252c56;
+  --tnd-color-bg-avatar:            #363f72;
+  --tnd-color-accent-blue:          #61d7ff;
+
   /* Neutral */
   --tnd-color-neutral-bold:         #ffffff;
   --tnd-color-neutral-muted:        rgba(255, 255, 255, 0.12);
