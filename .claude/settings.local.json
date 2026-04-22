@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__use_figma",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp config user.email \"etochilin@bolt.com\")",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp config user.name \"Tocilin\")",
+      "Bash(gh repo *)",
+      "Bash(git rm *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(npm create *)",
+      "Bash(npx create-vite@latest . --template react --force)",
+      "Read(//Users/etochilin/Documents/Claude/Projects/**)",
+      "Bash(npx create-vite@latest SuperAppTemp --template react)",
+      "Bash(cp -r /Users/etochilin/Documents/Claude/Projects/SuperAppTemp/. /Users/etochilin/Documents/Claude/Projects/SuperApp/)",
+      "Bash(rm -rf /Users/etochilin/Documents/Claude/Projects/SuperAppTemp)",
+      "Bash(npm install *)"
+    ]
+  }
+}
