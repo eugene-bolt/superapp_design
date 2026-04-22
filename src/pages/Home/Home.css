@@ -58,10 +58,12 @@ body {
   display: flex;
   align-items: center;
 }
-.home-appbar-logo svg {
-  height: 18px;
+.home-appbar-logo img {
+  height: 16px;
   width: auto;
-  fill: #ffffff;
+  max-width: 80px;
+  object-fit: contain;
+  display: block;
 }
 .home-appbar-actions {
   display: flex;
