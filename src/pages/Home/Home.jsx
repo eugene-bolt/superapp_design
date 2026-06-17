@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import './Home.css'
+import logoSrc from '../../assets/logo_bolt.svg'
 
 // ── Figma asset URLs (Thunder DS icons — valid 7 days from fetch) ──
 const ASSETS = {
-  logo:       'https://www.figma.com/api/mcp/asset/8a826191-098c-401d-ada2-3c25839e438c',
+  logo:       logoSrc,
   notif:      'https://www.figma.com/api/mcp/asset/df275c05-e60e-4471-a87f-c3101add8810',
   lock:       'https://www.figma.com/api/mcp/asset/b0385b7c-1f6a-4078-a778-3ca5e24467a2',
   card:       'https://www.figma.com/api/mcp/asset/1aa2977a-2028-4494-bd36-fb7dcc6b6e8f',
