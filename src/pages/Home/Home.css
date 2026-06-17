@@ -14,7 +14,7 @@ body {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  background: #04091a;
+  background: var(--tnd-color-bg-page);
   position: relative;
   font-family: 'Inter', sans-serif;
 }
@@ -70,7 +70,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 9999px;
-  background: #252c56;
+  background: var(--tnd-color-bg-subtle);
   border: none;
   cursor: pointer;
   display: flex;
@@ -94,7 +94,7 @@ body {
 
 /* ── Card ── */
 .card {
-  background: #151a37;
+  background: var(--tnd-color-bg-card);
   border-radius: 16px;
   padding: 16px;
 }
@@ -125,7 +125,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #33ccff;
+  color: var(--tnd-color-accent);
   text-decoration: underline;
   padding: 0;
   transition: opacity 120ms ease;
@@ -150,10 +150,10 @@ body {
   flex-shrink: 0;
   overflow: hidden;
 }
-.avatar-muted  { background: #363f72; }
+.avatar-muted  { background: var(--tnd-color-bg-avatar); }
 .avatar-photo  { background: #252c56; }
 .avatar-photo img { width: 100%; height: 100%; object-fit: cover; }
-.avatar-blue   { background: #006cff; }
+.avatar-blue   { background: var(--tnd-color-brand); }
 .avatar-visa   { background: #1a1f71; }
 .avatar-mc     { background: #fff; border: 1px solid rgba(248,248,252,0.16); }
 
@@ -317,8 +317,8 @@ body {
 }
 .bottom-sheet {
   width: 100%;
-  max-width: 428px;
-  background: #151a37;
+  max-width: 480px;
+  background: var(--tnd-color-bg-card);
   border-radius: 24px 24px 0 0;
   padding: 24px 16px 40px;
   display: flex;
@@ -349,7 +349,7 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 9999px;
-  background: #252c56;
+  background: var(--tnd-color-bg-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -362,7 +362,7 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 9999px;
-  background: #33ccff;
+  background: var(--tnd-color-accent);
   border: 2px solid #151a37;
   display: flex;
   align-items: center;

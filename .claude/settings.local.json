@@ -39,7 +39,10 @@
       "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__send_code_connect_mappings",
       "Bash(python3 -c ' *)",
       "mcp__Claude_in_Chrome__navigate",
-      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp add -A)"
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp add -A)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp rm --cached .claude/worktrees/eloquent-jang-5670d4)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp add .gitignore)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp commit -m \"Ignore .claude/worktrees in git\")"
     ]
   }
 }
