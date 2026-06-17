@@ -29,6 +29,9 @@
   --tnd-color-destructive-muted:    rgba(229, 62, 62, 0.14);
   --tnd-color-destructive-muted-hover: rgba(229, 62, 62, 0.22);
 
+  /* Foreground */
+  --tnd-color-fg-default:           #ffffff;
+
   /* Text */
   --tnd-color-text-on-bold:         #04091a;
   --tnd-color-text-primary:         #ffffff;

@@ -17,7 +17,29 @@
       "Bash(npx create-vite@latest SuperAppTemp --template react)",
       "Bash(cp -r /Users/etochilin/Documents/Claude/Projects/SuperAppTemp/. /Users/etochilin/Documents/Claude/Projects/SuperApp/)",
       "Bash(rm -rf /Users/etochilin/Documents/Claude/Projects/SuperAppTemp)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "mcp__Figma__get_metadata",
+      "mcp__Figma__get_variable_defs",
+      "mcp__Figma__get_design_context",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__get_variable_defs",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__get_libraries",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__get_design_context",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__get_code_connect_suggestions",
+      "Bash(npm run *)",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__search_design_system",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__get_metadata",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp remote -v)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp remote set-url origin https://github.com/eugene-bolt/superapp_design.git)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp push -u origin main)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cp \"/Users/etochilin/Downloads/page/_🎨 tnd/logo/logo_bolt.svg\" /Users/etochilin/Documents/Claude/Projects/SuperApp/src/assets/logo_bolt.svg)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp add src/assets/logo_bolt.svg src/pages/Home/Home.jsx .claude/launch.json)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp commit -m ' *)",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp push)",
+      "mcp__670f0b83-86a2-4b78-9e02-0ddf5710deb0__send_code_connect_mappings",
+      "Bash(python3 -c ' *)",
+      "mcp__Claude_in_Chrome__navigate",
+      "Bash(git -C /Users/etochilin/Documents/Claude/Projects/SuperApp add -A)"
     ]
   }
 }
