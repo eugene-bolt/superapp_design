@@ -47,6 +47,7 @@ const ORDERS = [
     status: 'Waiting for updates',
     subtitle: 'Nike Air Force 1 LV8 / MULTI-COLOR',
     icon: 'shoe',
+    img: '/nike-shoes.png',
   },
 ]
 
@@ -148,7 +149,7 @@ export default function HomeSimple({ version, onLogout }) {
                 <div className="hs-order-row">
                   <div className="hs-order-icon">
                     {order.icon === 'shoe'
-                      ? <div className="hs-order-img-placeholder" />
+                      ? <img src={order.img} alt={order.store} className="hs-order-img-placeholder" style={{ objectFit: 'cover' }} />
                       : <IconOrders width="22" height="22" style={{ color: '#fff' }} />
                     }
                   </div>
