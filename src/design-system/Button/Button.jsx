@@ -7,6 +7,7 @@ export function Button({
   size = 'md',
   isDisabled = false,
   isLoading = false,
+  fullWidth = false,
   leadingIcon,
   trailingIcon,
   onClick,
@@ -15,8 +16,9 @@ export function Button({
 }) {
   const classes = [
     'btn',
-    `btn-${size}`,
+    variant !== 'ghost' && `btn-${size}`,
     `btn-${intent}-${variant}`,
+    fullWidth && 'btn-full',
     className,
   ].filter(Boolean).join(' ')
 

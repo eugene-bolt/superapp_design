@@ -1,0 +1,210 @@
+.login-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--tnd-color-bg-page);
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* ── Splash ── */
+.splash-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-logo {
+  height: 64px;
+  width: auto;
+  color: #ffffff;
+}
+
+[data-seam="light"] .splash-logo {
+  color: #04091a;
+}
+
+/* ── Logo in AppBar ── */
+.login-logo {
+  height: 16px;
+  width: auto;
+}
+
+/* ── Body (scrollable form area) ── */
+.login-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 0;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+/* ── Input field ── */
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.login-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tnd-color-input-label, var(--tnd-color-fg-muted));
+  line-height: 1.45;
+}
+
+.login-input {
+  height: 48px;
+  background: var(--tnd-color-bg-subtle);
+  border: 1.5px solid var(--tnd-color-input-border, var(--tnd-color-border-subtle));
+  border-radius: 12px;
+  padding: 0 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--tnd-color-text-primary);
+  outline: none;
+  transition: border-color 150ms ease, border-width 150ms ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+.login-input::placeholder { color: var(--tnd-color-fg-muted); }
+.login-input:focus {
+  border-width: 2px;
+  border-color: var(--tnd-color-border-focus);
+}
+
+/* ── OTP input ── */
+.login-input-otp {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+}
+
+/* ── Resend row ── */
+.login-resend-row {
+  display: flex;
+  align-items: center;
+}
+
+.login-resend-timer {
+  font-size: 16px;
+  color: var(--tnd-color-fg-muted);
+  line-height: 1.5;
+}
+
+/* ── Subtitle email highlight ── */
+.login-sub-highlight {
+  color: #ffffff;
+}
+
+/* ── Action bar (pinned to bottom) ── */
+.login-action-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px 34px;
+  flex-shrink: 0;
+}
+
+/* ── App preferences header (scrolls with list) ── */
+.pref-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+.pref-title {
+  font-family: var(--tnd-font-family-brand, 'PP Agrandir', sans-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--tnd-color-fg-default);
+  line-height: 1.2;
+  margin: 0;
+}
+.pref-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--tnd-color-fg-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── App preferences list ── */
+.pref-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pref-list::-webkit-scrollbar { display: none; }
+
+.pref-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--tnd-color-bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--tnd-color-border-subtle);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.pref-item-checked {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.pref-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pref-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.pref-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--tnd-color-text-primary);
+  line-height: 1.5;
+}
+.pref-desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--tnd-color-fg-muted);
+  line-height: 1.5;
+}
+
+.pref-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--tnd-color-border-subtle);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.pref-checkbox-checked {
+  background: #ffffff;
+  border-color: #ffffff;
+}

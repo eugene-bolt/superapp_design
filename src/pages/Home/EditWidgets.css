@@ -1,0 +1,149 @@
+.ew-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--tnd-color-bg-page);
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Header ── */
+.ew-header {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--tnd-color-border-subtle);
+  flex-shrink: 0;
+}
+
+.ew-header-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--tnd-color-text-primary);
+}
+
+.ew-header-end {
+  /* empty right cell to balance the X button */
+}
+
+/* ── Scroll area ── */
+.ew-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 16px 0;
+  display: flex;
+  flex-direction: column;
+}
+.ew-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Section labels ── */
+.ew-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--tnd-color-fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 10px 4px;
+}
+
+.ew-section-label-more {
+  margin-top: 28px;
+}
+
+/* ── Card list ── */
+.ew-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── App card ── */
+.ew-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--tnd-color-bg-card);
+  border-radius: 18px;
+  padding: 12px 14px;
+  user-select: none;
+  touch-action: none;
+  transition: opacity 150ms ease, box-shadow 150ms ease;
+}
+
+.ew-card-dragging {
+  opacity: 0.45;
+  box-shadow: var(--tnd-shadow-lg);
+}
+
+/* ── App icon ── */
+.ew-app-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── App name ── */
+.ew-app-name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--tnd-color-text-primary);
+  min-width: 0;
+}
+
+/* ── Checkbox toggle ── */
+.ew-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid var(--tnd-color-border-subtle);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 120ms ease, border-color 120ms ease;
+  color: var(--tnd-color-text-on-bold);
+}
+
+.ew-checkbox-on {
+  background: var(--tnd-color-text-primary);
+  border-color: var(--tnd-color-text-primary);
+}
+
+/* ── Drag handle ── */
+.ew-drag-handle {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tnd-color-fg-muted);
+  cursor: grab;
+  flex-shrink: 0;
+}
+.ew-drag-handle:active { cursor: grabbing; }
+
+.ew-drag-placeholder {
+  width: 32px;
+  flex-shrink: 0;
+}
+
+/* ── Sticky Done bar ── */
+.ew-action-bar {
+  padding: 16px 16px 34px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--tnd-color-border-subtle);
+  background: var(--tnd-color-bg-page);
+}

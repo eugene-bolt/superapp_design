@@ -1,33 +1,27 @@
 import './AppBar.css'
 
-export function AppBar({
-  title,
-  subtitle,
-  leading,
-  trailing,
-  size = 'md',
-  isSticky = false,
-  isScrolled = false,
-  className = '',
-}) {
+export function AppBarIconBtn({ children, onClick, ariaLabel }) {
   return (
-    <header
-      className={[
-        'app-bar',
-        `app-bar-${size}`,
-        isSticky && 'app-bar-sticky',
-        isScrolled && 'app-bar-scrolled',
-        className,
-      ].filter(Boolean).join(' ')}
-    >
-      {leading && <div className="app-bar-leading">{leading}</div>}
+    <button className="app-bar-icon-btn" onClick={onClick} aria-label={ariaLabel}>
+      {children}
+    </button>
+  )
+}
 
-      <div className="app-bar-content">
-        {title && <div className="app-bar-title">{title}</div>}
-        {subtitle && <div className="app-bar-subtitle">{subtitle}</div>}
+export function AppBar({ leading, trailing, title, subtitle }) {
+  return (
+    <header className="app-bar">
+      <div className="app-bar-row">
+        {leading && <div className="app-bar-leading">{leading}</div>}
+        <div className="app-bar-spacer" />
+        {trailing && <div className="app-bar-trailing">{trailing}</div>}
       </div>
-
-      {trailing && <div className="app-bar-trailing">{trailing}</div>}
+      {(title || subtitle) && (
+        <div className="app-bar-text">
+          {title && <h1 className="app-bar-title">{title}</h1>}
+          {subtitle && <p className="app-bar-subtitle">{subtitle}</p>}
+        </div>
+      )}
     </header>
   )
 }

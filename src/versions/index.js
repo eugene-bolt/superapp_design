@@ -1,7 +1,7 @@
 import main from './main.js'
-import fork101 from './fork-1.0.1.js'
+import northStar from './north-star.js'
 
-export const versions = [main, fork101]
+export const versions = [main, northStar]
 
 export function getVersion(id) {
   const base = main

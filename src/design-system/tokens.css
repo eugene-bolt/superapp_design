@@ -8,19 +8,24 @@
   --tnd-color-bg-subtle:            #252c56;
   --tnd-color-bg-avatar:            #363f72;
   --tnd-color-accent-blue:          #61d7ff;
+  --tnd-color-accent:               #ffffff;
+
+  /* Backgrounds (version-overridable) */
+  --tnd-color-bg-card:              #151a37;
+  --tnd-color-fg-muted:             #a0a4c0;
 
   /* Neutral */
   --tnd-color-neutral-bold:         #ffffff;
-  --tnd-color-neutral-muted:        rgba(255, 255, 255, 0.12);
-  --tnd-color-neutral-muted-hover:  rgba(255, 255, 255, 0.18);
-  --tnd-color-neutral-muted-press:  rgba(255, 255, 255, 0.08);
+  --tnd-color-neutral-muted:        #252c56;
+  --tnd-color-neutral-muted-hover:  #2e3666;
+  --tnd-color-neutral-muted-press:  #1f2548;
 
-  /* Brand (orange) */
-  --tnd-color-brand:                #ff8000;
-  --tnd-color-brand-hover:          #e67300;
-  --tnd-color-brand-press:          #cc6600;
-  --tnd-color-brand-muted:          rgba(255, 128, 0, 0.14);
-  --tnd-color-brand-muted-hover:    rgba(255, 128, 0, 0.22);
+  /* Brand (white — each mini-app overrides with its own color) */
+  --tnd-color-brand:                #ffffff;
+  --tnd-color-brand-hover:          rgba(255, 255, 255, 0.85);
+  --tnd-color-brand-press:          rgba(255, 255, 255, 0.7);
+  --tnd-color-brand-muted:          rgba(255, 255, 255, 0.12);
+  --tnd-color-brand-muted-hover:    rgba(255, 255, 255, 0.18);
 
   /* Destructive */
   --tnd-color-destructive:          #e53e3e;
@@ -41,7 +46,7 @@
   --tnd-color-text-destructive:     #e53e3e;
 
   /* Border */
-  --tnd-color-border-focus:         #ff8000;
+  --tnd-color-border-focus:         rgba(255, 255, 255, 0.8);
   --tnd-color-border-subtle:        rgba(255, 255, 255, 0.1);
 
   /* ── Typography ── */
@@ -88,4 +93,46 @@
   /* ── Transitions ── */
   --tnd-transition-fast:   120ms ease;
   --tnd-transition-normal: 200ms ease;
+}
+
+/* ── LightSeam overrides ── */
+[data-seam="light"] {
+  --tnd-color-bg-page:              #f5f7fa;
+  --tnd-color-bg-surface:           #ffffff;
+  --tnd-color-bg-elevated:          #ffffff;
+  --tnd-color-bg-subtle:            #e8eaf0;
+  --tnd-color-bg-avatar:            #d0d4e8;
+  --tnd-color-bg-card:              #ffffff;
+  --tnd-color-fg-default:           #04091a;
+  --tnd-color-fg-muted:             #5a6378;
+  --tnd-color-accent-blue:          #04091a;
+
+  --tnd-color-neutral-bold:         #04091a;
+  --tnd-color-neutral-bold-hover:   #131829;
+  --tnd-color-neutral-bold-press:   #1e2535;
+  --tnd-color-neutral-muted:        #e8eaf0;
+  --tnd-color-neutral-muted-hover:  #dde0ea;
+  --tnd-color-neutral-muted-press:  #d0d4e0;
+
+  --tnd-color-brand:                #04091a;
+  --tnd-color-brand-hover:          #131829;
+  --tnd-color-brand-press:          #1e2535;
+  --tnd-color-brand-muted:          rgba(4, 9, 26, 0.08);
+  --tnd-color-brand-muted-hover:    rgba(4, 9, 26, 0.14);
+
+  --tnd-color-text-on-bold:         #ffffff;
+  --tnd-color-text-primary:         #04091a;
+  --tnd-color-text-secondary:       rgba(4, 9, 26, 0.6);
+  --tnd-color-text-disabled:        rgba(4, 9, 26, 0.3);
+  --tnd-color-text-brand:           #04091a;
+  --tnd-color-text-destructive:     #cc2222;
+
+  --tnd-color-border-focus:         #04091a;
+  --tnd-color-border-subtle:        rgba(4, 9, 26, 0.12);
+  --tnd-color-input-label:          #04091a;
+  --tnd-color-input-border:         rgba(4, 9, 26, 0.2);
+
+  --tnd-shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.08);
+  --tnd-shadow-md:  0 4px 12px rgba(0, 0, 0, 0.1);
+  --tnd-shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.12);
 }

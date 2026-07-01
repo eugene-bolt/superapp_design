@@ -15,12 +15,13 @@
   transition:
     background-color var(--tnd-transition-fast),
     color var(--tnd-transition-fast),
-    box-shadow var(--tnd-transition-fast),
     opacity var(--tnd-transition-fast);
   position: relative;
   outline: none;
   min-width: 80px;
 }
+
+.btn-full { width: 100%; }
 
 /* ── Sizes ── */
 .btn-xs {
@@ -44,10 +45,10 @@
   color: var(--tnd-color-text-on-bold);
 }
 .btn-neutral-filled:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--tnd-color-neutral-bold-hover, rgba(255, 255, 255, 0.88));
 }
 .btn-neutral-filled:active:not(:disabled) {
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--tnd-color-neutral-bold-press, rgba(255, 255, 255, 0.75));
 }
 
 .btn-neutral-muted {
@@ -64,13 +65,12 @@
 .btn-neutral-ghost {
   background: transparent;
   color: var(--tnd-color-text-primary);
+  text-decoration: underline;
+  min-width: unset;
+  padding: 0;
+  height: auto;
 }
-.btn-neutral-ghost:hover:not(:disabled) {
-  background: var(--tnd-color-neutral-muted);
-}
-.btn-neutral-ghost:active:not(:disabled) {
-  background: var(--tnd-color-neutral-muted-press);
-}
+.btn-neutral-ghost:hover:not(:disabled) { opacity: 0.7; }
 
 /* ── Brand ── */
 .btn-brand-filled {
@@ -131,8 +131,8 @@
 /* ── Focus ring ── */
 .btn:focus-visible {
   box-shadow:
-    0 0 0 var(--tnd-focus-ring-offset) var(--tnd-color-bg-page),
-    0 0 0 calc(var(--tnd-focus-ring-offset) + var(--tnd-focus-ring-width)) var(--tnd-focus-ring-color);
+    0 0 0 2px var(--tnd-color-bg-page),
+    0 0 0 4px var(--tnd-color-brand);
 }
 
 /* ── Disabled ── */

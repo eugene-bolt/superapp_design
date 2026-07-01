@@ -1,24 +1,26 @@
 const main = {
   id: 'main',
   label: 'Main',
+  simpleMode: true,
+  seam: 'dark',
 
   theme: {
     bgPage:   '#04091a',
     bgCard:   '#151a37',
     bgSubtle: '#252c56',
     bgAvatar: '#363f72',
-    accent:   '#33ccff',
+    accent:   '#ffffff',
     brand:    '#006cff',
     fgDefault:'#ffffff',
     fgMuted:  '#a0a4c0',
   },
 
   sections: {
-    recentOrders: true,
+    recentOrders:  true,
     boltAssistant: true,
-    banner: true,
-    wallet: true,
-    addressBook: true,
+    banner:        true,
+    wallet:        true,
+    addressBook:   true,
     shopMerchants: true,
   },
 
@@ -28,7 +30,7 @@ const main = {
     assistantCta:  "Let's chat",
     bannerTag:     '15% OFF',
     bannerTitle:   'Natural Aged After Shave',
-    bannerSub:     'A timeless scent for the modern man',
+    bannerSub:     'A timeless scent that captivates every moment',
     bannerPriceOld:'$89.99',
     bannerPriceNew:'$71.99',
     bannerCta:     'Shop now',
@@ -37,15 +39,14 @@ const main = {
   },
 
   boltApps: [
-    { key: 'orders',      label: 'Orders',       locked: false },
-    { key: 'spending',    label: 'Spending',      locked: false },
-    { key: 'cards',       label: 'Cards/Bank',    locked: true  },
-    { key: 'transfer',    label: 'Send/Receive',  locked: true  },
-    { key: 'crypto',      label: 'Crypto',        locked: true  },
-    { key: 'trading',     label: 'Trading',       locked: true  },
-    { key: 'rewards',     label: 'Rewards',       locked: true  },
-    { key: 'credit',      label: 'Credit Score',  locked: true  },
-    { key: 'gaming',      label: 'Play & Earn',   locked: true  },
+    { key: 'money',   label: 'Money',   locked: false },
+    { key: 'wallet',  label: 'Wallet',  locked: false },
+    { key: 'shop',    label: 'Shop',    locked: false },
+    { key: 'orders',  label: 'Orders',  locked: false },
+    { key: 'rewards', label: 'Rewards', locked: false },
+    { key: 'crypto',  label: 'Crypto',  locked: true  },
+    { key: 'trade',   label: 'Trade',   locked: true  },
+    { key: 'credit',  label: 'Credit',  locked: true  },
   ],
 }
 
