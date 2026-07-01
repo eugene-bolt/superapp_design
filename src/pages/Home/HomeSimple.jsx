@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './HomeSimple.css'
 import { AppBar, AppBarIconBtn } from '../../design-system/AppBar/AppBar'
 import { Button } from '../../design-system/Button/Button'
-import { EditWidgets } from './EditWidgets'
 import { APP_MAP } from '../../data/apps'
 import LogoSvg from '../../assets/logo_bolt.svg?react'
 import IconUser from '../../assets/icons/user.svg?react'
@@ -64,21 +63,20 @@ const ADDRESSES = [
 ]
 
 const MERCHANTS = [
-  { id: 'm1', name: 'Revolve' },
-  { id: 'm2', name: 'Luisaviaroma' },
-  { id: 'm3', name: 'Badgley Mischka' },
-  { id: 'm4', name: 'Lucky Brand' },
-  { id: 'm5', name: 'Tadashi Shoji' },
-  { id: 'm6', name: 'Headlights Depot' },
-  { id: 'm7', name: 'AEV' },
-  { id: 'm8', name: 'Pure Diesel Power' },
+  { id: 'm1', name: 'Revolve',          img: '/src/assets/merchants/revolve.png' },
+  { id: 'm2', name: 'Luisaviaroma',     img: '/src/assets/merchants/Luisaviaroma.png' },
+  { id: 'm3', name: 'Badgley Mischka',  img: '/src/assets/merchants/Badgley Mischka.png' },
+  { id: 'm4', name: 'Lucky Brand',      img: '/src/assets/merchants/Lucky Brand.png' },
+  { id: 'm5', name: 'Tadashi Shoji',    img: '/src/assets/merchants/Tadashi Shoji.png' },
+  { id: 'm6', name: 'Headlights Depot', img: '/src/assets/merchants/Headlights Depot.png' },
+  { id: 'm7', name: 'AEV',              img: '/src/assets/merchants/AEV.png' },
+  { id: 'm8', name: 'Pure Diesel Power',img: '/src/assets/merchants/Pure Diesel Power.png' },
 ]
 
-function MerchantLogo({ name }) {
-  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 3).toUpperCase()
+function MerchantLogo({ name, img }) {
   return (
     <div className="merchant-logo">
-      <span className="merchant-initials">{initials}</span>
+      <img src={img} alt={name} className="merchant-logo-img" />
     </div>
   )
 }
@@ -109,9 +107,8 @@ function CardBrand({ brand, last4 }) {
 
 export default function HomeSimple({ version, onLogout }) {
   const [sheetOpen, setSheetOpen] = useState(false)
-  const [editOpen, setEditOpen] = useState(false)
   const { sections, copy } = version
-  const [activeKeys, setActiveKeys] = useState(() => version.boltApps.map(a => a.key))
+  const activeKeys = version.boltApps.map(a => a.key)
 
   return (
     <div className="home-simple">
@@ -279,7 +276,7 @@ export default function HomeSimple({ version, onLogout }) {
             <div className="hs-merchants-grid">
               {MERCHANTS.map(m => (
                 <div key={m.id} className="hs-merchant-item">
-                  <MerchantLogo name={m.name} />
+                  <MerchantLogo name={m.name} img={m.img} />
                   <span className="hs-merchant-name">{m.name}</span>
                 </div>
               ))}
@@ -298,11 +295,6 @@ export default function HomeSimple({ version, onLogout }) {
           <Button variant="ghost">{copy.footerLink}</Button>
         </div>
 
-        <div className="hs-customize-bar">
-          <Button intent="neutral" variant="muted" fullWidth onClick={() => setEditOpen(true)}>
-            Customize
-          </Button>
-        </div>
       </div>
 
       {/* App switcher */}
@@ -332,14 +324,6 @@ export default function HomeSimple({ version, onLogout }) {
         </div>
       )}
 
-      {/* Edit widgets */}
-      {editOpen && (
-        <EditWidgets
-          activeKeys={activeKeys}
-          onDone={keys => { setActiveKeys(keys); setEditOpen(false) }}
-          onClose={() => setEditOpen(false)}
-        />
-      )}
     </div>
   )
 }
