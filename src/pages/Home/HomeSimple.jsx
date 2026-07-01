@@ -63,14 +63,14 @@ const ADDRESSES = [
 ]
 
 const MERCHANTS = [
-  { id: 'm1', name: 'Revolve',          img: '/src/assets/merchants/revolve.png' },
-  { id: 'm2', name: 'Luisaviaroma',     img: '/src/assets/merchants/Luisaviaroma.png' },
-  { id: 'm3', name: 'Badgley Mischka',  img: '/src/assets/merchants/Badgley Mischka.png' },
-  { id: 'm4', name: 'Lucky Brand',      img: '/src/assets/merchants/Lucky Brand.png' },
-  { id: 'm5', name: 'Tadashi Shoji',    img: '/src/assets/merchants/Tadashi Shoji.png' },
-  { id: 'm6', name: 'Headlights Depot', img: '/src/assets/merchants/Headlights Depot.png' },
-  { id: 'm7', name: 'AEV',              img: '/src/assets/merchants/AEV.png' },
-  { id: 'm8', name: 'Pure Diesel Power',img: '/src/assets/merchants/Pure Diesel Power.png' },
+  { id: 'm1', name: 'Revolve',          img: '/merchants/revolve.png' },
+  { id: 'm2', name: 'Luisaviaroma',     img: '/merchants/Luisaviaroma.png' },
+  { id: 'm3', name: 'Badgley Mischka',  img: '/merchants/Badgley Mischka.png' },
+  { id: 'm4', name: 'Lucky Brand',      img: '/merchants/Lucky Brand.png' },
+  { id: 'm5', name: 'Tadashi Shoji',    img: '/merchants/Tadashi Shoji.png' },
+  { id: 'm6', name: 'Headlights Depot', img: '/merchants/Headlights Depot.png' },
+  { id: 'm7', name: 'AEV',             img: '/merchants/AEV.png' },
+  { id: 'm8', name: 'Pure Diesel Power',img: '/merchants/Pure Diesel Power.png' },
 ]
 
 function MerchantLogo({ name, img }) {
@@ -223,7 +223,7 @@ export default function HomeSimple({ version, onLogout }) {
             </div>
             <img
               className="hs-banner-img"
-              src="/src/assets/banner-aftershave.png"
+              src="/banner-aftershave.png"
               alt="Natural Aged After Shave"
             />
           </div>
